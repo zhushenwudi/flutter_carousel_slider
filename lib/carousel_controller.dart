@@ -88,6 +88,12 @@ class CarouselControllerImpl implements CarouselController {
   /// Jumps the page position from its current value to the given value,
   /// without animation, and without checking if the new value is in range.
   void jumpToPage(int page) {
+    if (_state == null) {
+      return;
+    }
+    if (_state!.pageController == null) {
+      return;
+    }
     final index = getRealIndex(_state!.pageController!.page!.toInt(),
         _state!.realPage - _state!.initialPage, _state!.itemCount);
 
